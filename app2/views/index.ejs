@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+
+
+
+        <form class="" form action="/" method="POST">
+            <div class="">
+                <h4>ZipCode</h4>
+                <input class="" type="zipcode" id="zipcode" name="zipcode">
+                <button type="submit">FIND</button>
+            </form>
+            <% if (newData.data.data.length > 0) { %>
+                <h1><%= newData.word %> </h1>
+              <% newData.data.data.forEach(datas => { %>
+                <h1><%= datas.summary %> </h1>
+              
+
+            <% }) %>
+
+            <% } %>
+            
+            
+        <script src="" async defer></script>
+    </body>
+</html>
