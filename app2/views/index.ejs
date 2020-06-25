@@ -22,9 +22,12 @@
                 <button type="submit">FIND</button>
             </form>
             <% if (newData.data.data.length > 0) { %>
-                <h1><%= newData.word %> </h1>
+   
+                <h1>This data is from <%= newData.word %> </h1>
               <% newData.data.data.forEach(datas => { %>
-                <h1><%= datas.summary %> </h1>
+                <h2><%= datas.time %> </h2>
+                <h3>The min Temp is <%= datas.temperatureLow %> and the Max temp is <%= datas.temperatureHigh %> </h3>
+                <p><%= datas.summary %> </p>
               
 
             <% }) %>

@@ -5,7 +5,7 @@ const weatherKey = process.env.DARKKEY
 const redis = require('redis')
 const REDIS_PORT = 6379
 const client = redis.createClient(REDIS_PORT)
-
+const moment = require('moment')
 module.exports = {
     home: (req,res, next) => {
         const newData = {
@@ -28,16 +28,25 @@ module.exports = {
             const weatherResult = await axios.get(weatherUrl)
             const data = weatherResult.data.daily
             const currentDate = await Date.now()
-            // const zipcode = req.body.zipcode
             let newData = {}
-            // newData[zipcode] = data
             newData.date = currentDate
             newData.data = data
             newData.word = 'db'
-            await client.setex('redisData' , 20000 , JSON.stringify(newData))
+
+            newData.data.data.forEach(data => {
+                const dateTime = moment(newData.data.data[0].time, 'X')
+                console.log(data.time)
+                data.time = dateTime.format("YY-MM-DD HH:mm:ss")
+                
+            })
+
+            await client.setex(`${req.body.zipcode}` , 2000 , JSON.stringify(newData))
             console.log('db')
-            // console.log(newData)
+           
             
+            // const dateTime = moment(newData.data.data[0].time, 'X')
+            // console.log(dateTime.format("YY-MM-DD"))
+
             return  res.render('index',{newData})
           }catch (err){
             console.log(err)
@@ -48,18 +57,20 @@ module.exports = {
 
     test: async (req,res,next) => {
         
+
+
+
+
   try {
     const data = await client.get('redisData' , async (err , info) => {
       if (info === null){
         console.log('null call')
-        // return next()
-        return console.log('empty')
+        return next()
       }
 
       const currentDate = await Date.now()
       const newData= await JSON.parse(info)
       const redisDate = newData.date
-      
       
 
       if(+currentDate < +redisDate + 200 *1000){

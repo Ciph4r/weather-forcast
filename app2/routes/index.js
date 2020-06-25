@@ -9,7 +9,7 @@ const client = redis.createClient(REDIS_PORT)
 const checkForData =  async (req , res, next) => {
 
   try {
-    const data = await client.get('redisData' , async (err , info) => {
+    const data = await client.get(`${req.body.zipcode}` , async (err , info) => {
       if (info === null){
         console.log('null call')
         return next()
@@ -20,7 +20,7 @@ const checkForData =  async (req , res, next) => {
       const redisDate = newData.date
       
 
-      if(+currentDate < +redisDate + 200 *1000){
+      if(+currentDate < +redisDate + 2000 *1000){
         newData.word = 'cache'
         return res.render('index',  {newData})
        
