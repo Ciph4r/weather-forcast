@@ -7,7 +7,6 @@ const client = redis.createClient(REDIS_PORT)
 /* GET home page. */
 
 const checkForData =  async (req , res, next) => {
-
   try {
     const data = await client.get(`${req.body.zipcode}` , async (err , info) => {
       if (info === null){
@@ -19,8 +18,7 @@ const checkForData =  async (req , res, next) => {
       const newData= await JSON.parse(info)
       const redisDate = newData.date
       
-
-      if(+currentDate < +redisDate + 2000 *1000){
+      if(+currentDate < +redisDate + 18000 *1000){
         newData.word = 'cache'
         return res.render('index',  {newData})
        
@@ -35,12 +33,8 @@ const checkForData =  async (req , res, next) => {
 }
 
 
-
-
 router.get('/', controller.home)
 router.post('/' , checkForData, controller.zipcode)
-router.get('/test',controller.test)
-
 
 
 module.exports = router;

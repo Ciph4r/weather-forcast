@@ -39,7 +39,6 @@
                     </form>
               <div class="container">
                 <div class="row">
-                    
                     <% if (newData.data.data.length > 0) { %>
                         <h1>This data is from <%= newData.word %> </h1>
 
@@ -49,7 +48,8 @@
                             <div class="col-md-4" style="width:20rem;">
                                 <div class="card">
                                     <h3><%= datas.time %> </h3>
-                                <canvas id=<%= datas.icon %> width="" height=""></canvas> 
+                                <canvas id=<%= datas.icon%> width="" height=""></canvas> 
+                                
                                 <div class="card-body">
                                     <p><%= datas.summary %> </p>
                                     <p style="text-align: center;">LOW: <%= datas.temperatureLow %> <BR> HIGH: <%= datas.temperatureHigh %> </p>

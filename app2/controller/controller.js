@@ -39,61 +39,20 @@ module.exports = {
                 
             })
 
-            await client.setex(`${req.body.zipcode}` , 2000 , JSON.stringify(newData))
+            await client.setex(`${req.body.zipcode}` , 18000 , JSON.stringify(newData))
             console.log('db')
            
-            
-            // const dateTime = moment(newData.data.data[0].time, 'X')
-            // console.log(dateTime.format("YY-MM-DD"))
 
             return  res.render('index',{newData})
           }catch (err){
             console.log(err)
           }
 
-
-    },
-
-    test: async (req,res,next) => {
-        
-
-
-
-
-  try {
-    const data = await client.get('redisData' , async (err , info) => {
-      if (info === null){
-        console.log('null call')
-        return next()
-      }
-
-      const currentDate = await Date.now()
-      const newData= await JSON.parse(info)
-      const redisDate = newData.date
-      
-
-      if(+currentDate < +redisDate + 200 *1000){
-        newData.word = 'cache'
-        return res.render('index',  {newData})
-       
-      }
-        next()
-    })
-  } catch (err){
-    next(err)
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+
+
+
+
+    
 }
