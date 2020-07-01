@@ -9,32 +9,94 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <style>
+            .card-img-top {
+                height: 400px;
+                
+              }
+              .col-md-4 {
+                margin-top: 100px;
+        }
+        </style>
         <link rel="stylesheet" href="">
     </head>
     <body>
 
 
 
-        <form class="" form action="/" method="POST">
-            <div class="">
-                <h4>ZipCode</h4>
-                <input class="" type="zipcode" id="zipcode" name="zipcode">
-                <button type="submit">FIND</button>
-            </form>
-            <% if (newData.data.data.length > 0) { %>
-   
-                <h1>This data is from <%= newData.word %> </h1>
-              <% newData.data.data.forEach(datas => { %>
-                <h2><%= datas.time %> </h2>
-                <h3>The min Temp is <%= datas.temperatureLow %> and the Max temp is <%= datas.temperatureHigh %> </h3>
-                <p><%= datas.summary %> </p>
-              
 
-            <% }) %>
+          
 
-            <% } %>
-            
-            
-        <script src="" async defer></script>
+          <div id="container" class="fluid">
+            <main role="main">
+                <form class="" form action="/" method="POST">
+                    <div class="">
+                        <h4>ZipCode</h4>
+                        <input class="" type="zipcode" id="zipcode" name="zipcode">
+                        <button type="submit">FIND</button>
+                    </form>
+              <div class="container">
+                <div class="row">
+                    
+                    <% if (newData.data.data.length > 0) { %>
+                        <h1>This data is from <%= newData.word %> </h1>
+
+                        <% newData.data.data.forEach(datas => { %>
+                           
+                            <% console.log(datas) %> 
+                            <div class="col-md-4" style="width:20rem;">
+                                <div class="card">
+                                    <h3><%= datas.time %> </h3>
+                                <canvas id=<%= datas.icon %> width="" height=""></canvas> 
+                                <div class="card-body">
+                                    <p><%= datas.summary %> </p>
+                                    <p style="text-align: center;">LOW: <%= datas.temperatureLow %> <BR> HIGH: <%= datas.temperatureHigh %> </p>
+                                  </div>
+                      </div>
+                    </div>
+                    <% }) %>
+                    <% } %>
+                </div>
+              </div>
+            </main>
+          </div>
+          
+
+          <script src="javascripts/skycon.js"></script>
+
+          <script>
+            var icons = new Skycons({"monochrome": false}),
+                list  = [
+                  "clear-day",
+                  "clear-night",
+                  "partly-cloudy-day",
+                  "partly-cloudy-night",
+                  "cloudy",
+                  "rain",
+                  "showers-day",
+                  "showers-night",
+                  "sleet",
+                  "rain-snow",
+                  "rain-snow-showers-day",
+                  "rain-snow-showers-night",
+                  "snow",
+                  "snow-showers-day",
+                  "snow-showers-night",
+                  "wind",
+                  "fog",
+                  "thunder",
+                  "thunder-rain",
+                  "thunder-showers-day",
+                  "thunder-showers-night",
+                  "hail"
+                ],
+                i;
+            for(i = list.length; i--; )
+              icons.set(list[i], list[i]);
+            icons.play();
+          </script>
+
     </body>
 </html>

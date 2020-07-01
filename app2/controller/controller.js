@@ -34,9 +34,8 @@ module.exports = {
             newData.word = 'db'
 
             newData.data.data.forEach(data => {
-                const dateTime = moment(newData.data.data[0].time, 'X')
                 console.log(data.time)
-                data.time = dateTime.format("YY-MM-DD HH:mm:ss")
+                data.time = moment.unix(data.time).format('MMMM Do YYYY, h:mm a')
                 
             })
 
