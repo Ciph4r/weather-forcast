@@ -10,7 +10,6 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <style>
             .card-img-top {
                 height: 400px;
@@ -23,11 +22,6 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-
-
-
-
-          
 
           <div id="container" class="fluid">
             <main role="main">
@@ -43,13 +37,12 @@
                         <h1>This data is from <%= newData.word %> </h1>
 
                         <% newData.data.data.forEach(datas => { %>
-                           
-                            <% console.log(datas) %> 
                             <div class="col-md-4" style="width:20rem;">
                                 <div class="card">
                                     <h3><%= datas.time %> </h3>
-                                <canvas id=<%= datas.icon%> width="" height=""></canvas> 
                                 
+                                <canvas id=<%= datas.icon%> width="" height=""></canvas> 
+                    
                                 <div class="card-body">
                                     <p><%= datas.summary %> </p>
                                     <p style="text-align: center;">LOW: <%= datas.temperatureLow %> <BR> HIGH: <%= datas.temperatureHigh %> </p>
@@ -63,7 +56,6 @@
             </main>
           </div>
           
-
           <script src="javascripts/skycon.js"></script>
 
           <script>
